@@ -75,3 +75,13 @@ body::after {
     display: none;
   }
 }
+.carousel-container { // замени на имя своего класса
+  display: flex;
+  overflow-x: auto;          /* Включает прокрутку */
+  scroll-snap-type: x mandatory; /* Магнитит карточки к краям при свайпе */
+  -webkit-overflow-scrolling: touch; /* Делает свайп на iPhone "масляным" и плавным */
+  
+  & > * {
+    scroll-snap-align: start; /* Каждая карточка будет останавливаться ровно в начале экрана */
+  }
+}
