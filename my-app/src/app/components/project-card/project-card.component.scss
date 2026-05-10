@@ -1,0 +1,94 @@
+/* project-card.component.scss */
+.project-card {
+  background: rgba(255, 255, 255, 0.7); /* Сделал чуть прозрачнее для glassmorphism */
+  border-radius: 20px; /* Более мягкие углы как на макете */
+  overflow: hidden;
+  backdrop-filter: blur(12px); 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.project-card-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: #f0f0f0;
+
+  // Эффект пульсации (Skeleton Screen)
+  &.is-loading::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-pulse 1.5s infinite;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  &:hover img.visible {
+    transform: scale(1.05); /* Легкий зум при наведении на карточку */
+  }
+}
+
+@keyframes skeleton-pulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.project-card-desc {
+  margin: 1.2rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #4b5563; /* Более мягкий серый вместо чистого черного */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1; /* Чтобы кнопки всегда были на одном уровне */
+}
+
+.project-card-footer {
+  margin-top: auto;
+  
+  .open-btn {
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 12px;
+    border: none;
+    background: #1a1a1a; /* Темный цвет из макета image_73a8fd.jpg */
+    color: white;
+    font-size: 0.95rem; /* Увеличили с 0.9rem до 1.1rem */
+    font-weight: 600;  /* Можно также добавить жирности для акцента */
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #deffe5; /* Мятный акцент при наведении */
+      color: #1a1a1a;
+      transform: scale(1.02);
+    }
+  }
+}

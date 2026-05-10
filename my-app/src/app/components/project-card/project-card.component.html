@@ -1,0 +1,33 @@
+<!-- src/components/project-card/project-card.component.html -->
+<article class="project-card">
+  <div class="project-card-header">
+    <h3>{{ project.title }}</h3>
+  </div>
+
+  <div class="project-card-image">
+  <!-- 
+    ngSrc: передаем только относительный путь или ID из Cloudinary
+    width/height: указываем желаемый размер (Angular сам попросит Cloudinary уменьшить фото)
+    priority: для первых карточек на экране, чтобы они грузились вне очереди
+  -->
+  <img 
+    [ngSrc]="project.imageUrl" 
+    width="600" 
+    height="400"
+    [alt]="project.title"
+  [loaderParams]="{ format: 'auto', quality: 'auto' }"
+    [alt]="project.title"
+    (load)="imageLoaded = true"
+    [class.visible]="imageLoaded" />
+</div>
+
+  <p class="project-card-desc">
+    {{ project.description | slice:0:150 }}... 
+  </p>
+
+  <div class="project-card-footer">
+    <button type="button" class="open-btn" (click)="open.emit(project)">
+      Открыть проект
+    </button>
+  </div>
+</article>

@@ -1,0 +1,109 @@
+:host {
+  display: block;
+  min-height: 100vh;
+
+  /* УБИРАЕМ градиент, чтобы просвечивал фон из styles.scss */
+  background: transparent; 
+  color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.app-main {
+  /* отступ под плавающий навбар + нижний паддинг */
+  padding-top: 5.5rem;
+  padding-bottom: 3rem;
+  background: transparent;
+}
+footer {
+  /* 1. Убираем сплошной белый фон */
+  background: transparent !important; 
+  
+  /* 2. Если хочешь, чтобы текст лучше читался на фоне, 
+     можно добавить мимолетное размытие (опционально) */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+padding: 4rem 2rem; /* Оставляем пространство для воздуха */
+  width: 100%;
+  /* 3. Убираем тени и границы, которые создают "полосу" */
+  border: none !important;
+  box-shadow: none !important;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-content {
+  width: min(1100px, 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-info {
+  .footer-logo {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin: 0;
+  }
+}
+
+.footer-links {
+  // Ваши существующие настройки flex и gap
+  display: flex;
+  gap: 2rem;
+
+  .footer-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #111827;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  .link-icon {
+    width: 22px;
+    height: 22px;
+    display: block;
+    transition: all 0.3s ease;
+  }
+
+  /* WhatsApp красим через fill (заливка) */
+  .whatsapp-icon {
+    fill: currentColor;
+    stroke: none; /* Убираем обводку, если она была */
+  }
+
+  /* Почту красим через stroke (линии) */
+  .mail-icon {
+    fill: none; /* КРИТИЧНО: убираем заливку, чтобы не было квадрата */
+    stroke: currentColor;
+  }
+
+  &:hover {
+    color: #059669; /* Зеленый перелив при наведении */
+    
+    .link-icon {
+      transform: scale(1.1);
+    }
+  }
+}
+}
+
+/* Адаптация под iPhone 15 Pro и другие мобильные устройства */
+@media (max-width: 768px) {
+  .footer-links {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+}
