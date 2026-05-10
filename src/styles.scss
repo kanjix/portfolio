@@ -58,3 +58,20 @@ body::after {
   pointer-events: none;
   background-image: url("https://www.transparenttextures.com/patterns/p6.png");
 }
+* {
+  // Включает плавную прокрутку пальцем для всех блоков со скроллом
+  -webkit-overflow-scrolling: touch;
+}
+
+// Если карусель — это список или контейнер с прокруткой
+.carousel, .projects-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 15px;
+  
+  // Прячем некрасивый системный скроллбар
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -7,7 +7,9 @@
   color: #111827;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
-
+:root {
+  --safe-area-bottom: env(safe-area-inset-bottom, 20px);
+}
 .app-main {
   /* отступ под плавающий навбар + нижний паддинг */
   padding-top: 5.5rem;
@@ -17,7 +19,7 @@
 footer {
   /* 1. Убираем сплошной белый фон */
   background: transparent !important; 
-  
+  padding-bottom: calc(var(--safe-area-bottom) + 20px) !important;
   /* 2. Если хочешь, чтобы текст лучше читался на фоне, 
      можно добавить мимолетное размытие (опционально) */
   backdrop-filter: blur(5px);
