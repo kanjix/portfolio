@@ -33,7 +33,10 @@
 
     <div class="section-card">
       <p>
-        Архитектор-визионер с фокусом на 3D-моделирование и визуализацию. Исследую потенциал современных архитектурных форм, создавая функциональные и минималистичные пространства. Моя цель — проектировать среду, в которой чистота линий гармонирует с техническим совершенством и удобством эксплуатации.
+        Архитектор-визионер с фокусом на 3D-моделирование и визуализацию. Исследую потенциал современных архитектурных форм, создавая функциональные и минималистичные пространства. Моя цель — проектировать среду, в которой чистота линий гармонирует с техническим совершенством и удобством эксплуатации. 
+        <br>
+        <br>
+        Свободно владею русским языком, использую английский на уровне, достаточном для изучения международной профессиональной литературы, а также обладаю базовыми знаниями казахского языка.
       </p>
 
       
@@ -144,65 +147,5 @@
     </div>
   </section>
 
-  <!-- SELECTED PROJECTS (динамика из JSON) -->
-  <section class="section" id="projects">
-    <div class="section-header header-with-button">
-      <div>
-        <h2>Превью проектов</h2>
-        <p>Небольшой обзор проектов в виде стопки карточек.</p>
-      </div>
-
-      <a routerLink="/projects" class="view-all-btn">Посмотреть все</a>
-    </div>
-
-    <!-- состояние загрузки -->
-    <p *ngIf="loading()">Загрузка...</p>
-
-    <!-- когда загрузка закончилась -->
-    <ng-container *ngIf="!loading()">
-      <div *ngIf="topProjects().length; else noProjects" class="carousel">
-        <button
-          type="button"
-          class="carousel-control"
-          (click)="prevProject()"
-          aria-label="Предыдущий проект"
-        >
-          ‹
-        </button>
-
-        <div class="carousel-stack">
-          <article
-            class="project-card-stack"
-            *ngFor="let project of topProjects(); let i = index"
-            [ngStyle]="getCardStyle(i)"
-          >
-            <h3>{{ project.title }}</h3>
-            <p class="meta">
-              {{ project.category }} · {{ project.year }}
-            </p>
-            <p class="stack-desc">
-              {{ project.description }}
-            </p>
-            <button type="button" class="open-btn" (click)="selectedProject.set(project)">
-  Открыть проект
-</button>
-          </article>
-        </div>
-
-        <button
-          type="button"
-          class="carousel-control"
-          (click)="nextProject()"
-          aria-label="Следующий проект"
-        >
-          ›
-        </button>
-      </div>
-
-      <ng-template #noProjects>
-        <p class="projects-empty">Пока нет проектов.</p>
-      </ng-template>
-    </ng-container>
-        <app-project-modal *ngIf="selectedProject()" [project]="selectedProject()" (close)="selectedProject.set(undefined)"></app-project-modal>
-  </section>
+  
 </div>

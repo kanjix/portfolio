@@ -1,40 +1,48 @@
 :host {
-  display: block;
-  min-height: 100vh;
-
-  /* УБИРАЕМ градиент, чтобы просвечивал фон из styles.scss */
+  display: flex;
+  flex-direction: column;
+  /* Убираем жесткий 100vh, ставим min-height 100%, 
+     чтобы body (который в styles.scss) контролировал высоту */
+  min-height: 100%; 
   background: transparent; 
   color: #111827;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
-:root {
-  --safe-area-bottom: env(safe-area-inset-bottom, 20px);
-}
+
 .app-main {
-  /* отступ под плавающий навбар + нижний паддинг */
+  /* Занимает всё свободное место, выталкивая футер вниз */
+  flex: 1 0 auto; 
   padding-top: 5.5rem;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
   background: transparent;
 }
+
 footer {
-  /* 1. Убираем сплошной белый фон */
+  /* Фикс обрезки: убираем лишние ограничения */
+  flex-shrink: 0; 
+  /* Полная прозрачность */
   background: transparent !important; 
-  padding-bottom: calc(var(--safe-area-bottom) + 20px) !important;
-  /* 2. Если хочешь, чтобы текст лучше читался на фоне, 
-     можно добавить мимолетное размытие (опционально) */
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-padding: 4rem 2rem; /* Оставляем пространство для воздуха */
-  width: 100%;
-  /* 3. Убираем тени и границы, которые создают "полосу" */
+  background-color: transparent !important;
+  
+  /* Убираем любые линии, которые создают эффект "отрезания" */
   border: none !important;
+  border-top: none !important;
   box-shadow: none !important;
+  
+  /* Воздух вокруг футера */
+  padding: 4rem 2rem; 
+  /* Безопасный отступ для iPhone и Mac */
+  padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 3rem) !important;
+  
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .footer-content {
-  width: min(1100px, 100%);
+  /* Центрируем содержимое */
+  width: 100%;
+  max-width: 1100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,70 +50,76 @@ padding: 4rem 2rem; /* Оставляем пространство для воз
   gap: 2rem;
 }
 
-.footer-info {
-  .footer-logo {
-    display: block;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 0.5rem;
-  }
-  
-  p {
-    font-size: 0.85rem;
-    color: #4b5563;
-    margin: 0;
-  }
-}
-
 .footer-links {
-  // Ваши существующие настройки flex и gap
   display: flex;
   gap: 2rem;
+  align-items: center;
 
   .footer-link {
+  color: #111827;
+  /* Плавность только для цвета и движения */
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  color: #111827;
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
 
   .link-icon {
     width: 22px;
     height: 22px;
-    display: block;
-    transition: all 0.3s ease;
+    color: inherit;
+    /* Убираем "transition: all", заменяем на точечные свойства */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &.whatsapp-icon {
+      /* Плавность только для заливки, чтобы не исчезала */
+      transition: fill 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      fill: currentColor;
+      stroke: none;
+    }
+
+    &.mail-icon {
+      /* Плавность только для обводки */
+      transition: stroke 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      fill: none !important;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
   }
 
-  /* WhatsApp красим через fill (заливка) */
-  .whatsapp-icon {
-    fill: currentColor;
-    stroke: none; /* Убираем обводку, если она была */
-  }
-
-  /* Почту красим через stroke (линии) */
-  .mail-icon {
-    fill: none; /* КРИТИЧНО: убираем заливку, чтобы не было квадрата */
-    stroke: currentColor;
-  }
-
+  /* Эффект при наведении */
   &:hover {
-    color: #059669; /* Зеленый перелив при наведении */
+    color: #059669; /* Тот самый зеленый акцент */
+    transform: translateY(-2px); /* Легкое всплытие */
     
     .link-icon {
-      transform: scale(1.1);
+      transform: scale(1.05); /* Микро-увеличение */
     }
   }
 }
 }
 
-/* Адаптация под iPhone 15 Pro и другие мобильные устройства */
+/* Мобильная адаптация */
 @media (max-width: 768px) {
+  footer {
+    padding: 3rem 1.5rem;
+    /* Увеличиваем отступ на мобилках еще сильнее */
+    padding-bottom: calc(env(safe-area-inset-bottom, 20px) + 4rem) !important;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
   .footer-links {
     flex-direction: column;
     gap: 1.5rem;
-    align-items: flex-start;
+    align-items: center; /* Центрируем иконки на мобилке */
+  }
+  
+  .footer-info {
+    order: 2; /* Логотип и имя уходят вниз под иконки */
   }
 }

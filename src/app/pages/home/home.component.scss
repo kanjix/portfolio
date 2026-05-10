@@ -2,13 +2,13 @@ html {
   scroll-behavior: smooth;
 }
 .page {
-  min-height: calc(100vh - 6rem);
-  padding: 0 1.5rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3.5rem;
-  scroll-behavior: smooth;
+  padding: 2rem 1.5rem;
+  min-height: auto; 
 }
 
 /* HERO контейнер */
@@ -396,169 +396,6 @@ html {
 }
 
 
-
-
-
-
-
-/* заголовок + кнопка "Посмотреть все" */
-
-.header-with-button {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.view-all-btn {
-  padding: 0.5rem 1.1rem;
-  border-radius: 999px;
-  border: 1px solid #d1d5db;
-  background: #f9fafb;
-  font-size: 0.85rem;
-  color: #111827;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.view-all-btn:hover {
-  background: #e5e7eb;
-  box-shadow: 0 8px 20px rgba(148, 163, 184, 0.3);
-}
-
-/* Карусель со стопкой карточек */
-
-.carousel {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.carousel-control {
-  border: none;
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow:
-    0 10px 30px rgba(148, 163, 184, 0.5),
-    0 0 0 1px rgba(209, 213, 219, 0.9);
-  cursor: pointer;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.carousel-control:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 14px 40px rgba(148, 163, 184, 0.7),
-    0 0 0 1px rgba(209, 213, 219, 0.9);
-}
-
-.carousel-stack {
-  position: relative;
-  flex: 1;
-  height: 220px;
-}
-
-/* Карточка в стопке (превью проектов) */
-.project-card-stack {
-  /* Увеличиваем непрозрачность до 0.7 - это даст нужную "плотность" */
-  background: rgba(255, 255, 255, 0.7) !important;
-  
-  /* Размытие оставляем, оно дает эффект дороговизны */
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  /* Делаем границу чуть мягче, чтобы она не "резала" глаз */
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
-  
-  /* Мягкая тень, чтобы карточка не сливалась с фоном */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
-  
-  border-radius: 24px;
-  padding: 2.5rem;
-  transition: all 0.4s ease;
-  isolation: isolate;
-
-  /* Цвет текста */
-  h3 {
-    color: #111827;
-    font-weight: 700;
-  }
-}
-
-/* Эффект при наведении — чуть больше "белого" для отклика */
-.project-card-stack:hover {
-  background: rgba(255, 255, 255, 0.85) !important;
-  transform: translateY(-5px);
-}
-
-.project-card-stack h3 {
-  margin-bottom: 0.2rem;
-  color: #000;
-}
-
-.stack-desc {
-  font-size: 0.9rem;
-  color: #000;
-
-  /* усечение по строкам */
-  display: -webkit-box;
-  -webkit-line-clamp: 3;      /* сколько строк оставить в превью */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-
-  word-break: break-word;     /* чтобы длинные слова не ломали верстку */
-}
-
-
-.project-card-stack p {
-  /* Твои текущие стили (цвет, шрифт) */
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #4b5563;
-  margin-top: 1rem;
-
-  /* ВКЛЮЧАЕМ УМНОЕ ОБРЕЗАНИЕ */
-  display: -webkit-box;
-  
-  -webkit-box-orient: vertical;  
-  
-  text-overflow: ellipsis; /* Добавляет те самые три точки */
-}
-
-.project-card-stack .btn-open {
-  /* Вместо резкого изменения цвета, используем плавную кривую */
-  transition: 
-    background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.4s ease;
-}
-
-
-/* Добавь это кнопкам и стрелкам, где вылазит квадрат */
-.btn-open, .carousel-arrow {
-  /* Форсируем 3D-рендеринг, это убирает "квадраты" */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  
-  /* Сглаживаем отрисовку теней и блюра */
-  will-change: background-color, transform; 
-}
-
-
-.projects-empty {
-  font-size: 0.9rem;
-  color: #6b7280;
-}
-
 @media (max-width: 768px) {
   .two-column {
     grid-template-columns: 1fr;
@@ -572,74 +409,9 @@ html {
     border-radius: 1.5rem;
   }
 
-  /* МОБИЛКА: вместо стопки — обычный список карточек */
-  .carousel {
-    align-items: stretch;
-    gap: 0.75rem;
-  }
-  .stack-desc {
-    -webkit-line-clamp: 2;    /* на телефоне только 2 строки */
-  }
-  .carousel-control {
-    display: none; /* стрелки убираем */
-  }
-
-  .section-card, .project-card-stack {
-  background: rgba(255, 255, 255, 0.45); /* Стеклянный эффект */
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 1.4rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s ease;
-}
-}
-
-.open-btn {
-  width: 100%;           /* Растягиваем на всю ширину карточки */
-  padding: 14px 20px;
-  border-radius: 13px;
-  border: none;
-  background: #1a1a1a;   /* Темный цвет из макета */
-  color: #ffffff;
-  
-  /* Ваши обновленные настройки текста */
-  font-size: 0.95rem;     
-  font-weight: 600;      
-  
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    background: #deffe5; /* Мятный акцент при наведении */
-    color: #1a1a1a;
-    transform: scale(1.02);
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-}
-
-.project-card-stack {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem;
-  /* Не добавляем здесь background, так как он наследуется сверху */
-}
+ 
 
 
-@media (max-width: 640px) {
-  .carousel-stack {
-    height: 260px;
-  }
-}
 
 /* ===== ПЕРЕКРАШИВАЕМ СТАРЫЙ ЗЕЛЁНЫЙ ТЕКСТ В ЧЁРНЫЙ ===== */
 
@@ -648,40 +420,4 @@ html {
 .hero-card * {
   color: #111827 !important;
 }
-
-/* заголовок "Лучшие проекты" и ссылки "Посмотреть все",
-   если они стилизованы старыми классами */
-.best-projects-title,
-.best-projects-title *,
-.view-all-link,
-.view-all-link * {
-  color: #111827 !important;
-}
-.project-card__link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.8rem 2rem;
-  font-size: 0.9rem;
-  border-radius: 50px;
-  text-decoration: none;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.2);
-  color: #111827;
-  font-weight: 600;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.5);
-}
-
-.project-card__link:hover {
-  background: rgba(255, 255, 255, 0.35);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.6);
-}
-
-.project-card__link:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.5);
 }

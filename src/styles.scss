@@ -79,9 +79,23 @@ body::after {
   display: flex;
   overflow-x: auto;          /* Включает прокрутку */
   scroll-snap-type: x mandatory; /* Магнитит карточки к краям при свайпе */
+  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch; /* Делает свайп на iPhone "масляным" и плавным */
   
   & > * {
     scroll-snap-align: start; /* Каждая карточка будет останавливаться ровно в начале экрана */
   }
+  &::-webkit-scrollbar {
+    height: 0;
+  }
+}
+// Контейнер, в котором лежит весь твой контент (выше футера)
+.main-wrapper { 
+  flex: 1 0 auto; // Эта магия заставляет контент занимать всё место, прижимая футер к низу, но не обрезая его
+}
+
+footer {
+  flex-shrink: 0; // Не дает футеру сжиматься
+  padding: 40px 0; // Даем нормальный отступ внутри
+  margin-top: auto; // Дополнительная страховка прижатия вниз
 }
