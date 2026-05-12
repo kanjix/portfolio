@@ -3,23 +3,28 @@ html {
 }
 .page {
   width: 100%;
+  /* Ограничиваем максимальную ширину, чтобы на мониторах не растягивалось в бесконечность */
+  max-width: 1200px; 
+  margin: 0 auto;    /* Центрируем всю страницу по горизонтали */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3.5rem;
-  padding: 2rem 1.5rem;
-  min-height: auto; 
+  /* Используем адаптивный паддинг: на мобилках меньше, на ПК больше */
+  padding: 2rem clamp(1rem, 5vw, 1.5rem); 
+  box-sizing: border-box;
 }
 
 /* HERO контейнер */
 .hero {
   position: relative;
-  width: min(1100px, 100%);
-  min-height: 60vh;
+  width: 100%;
+  /* Устанавливаем высоту, чтобы картинка не схлопывалась */
+  min-height: clamp(400px, 60vh, 600px); 
   border-radius: 2rem;
   overflow: hidden;
-  background: #ffffff; /* Вернули чистый белый фон вместо серого */
-  box-shadow: 0 40px 90px rgba(15, 23, 42, 0.15); /* Сделали тень мягче */
+  background: #ffffff;
+  box-shadow: 0 40px 90px rgba(15, 23, 42, 0.15);
 }
 
 /* Фон-картинка */
@@ -54,11 +59,11 @@ html {
   position: relative;
   z-index: 2;
   height: 100%;
-  padding: clamp(2.2rem, 4vw, 3rem);
+  /* Внутренние отступы контента */
+  padding: clamp(1.5rem, 8vw, 4rem); 
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 1.2rem;
   color: #ffffff;
 }
 
@@ -105,6 +110,7 @@ html {
   margin-top: 2rem;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 /* ОБЩИЕ СТИЛИ КНОПОК */
@@ -420,4 +426,39 @@ html {
 .hero-card * {
   color: #111827 !important;
 }
+}
+
+@media (max-width: 640px) {
+  .hero-buttons {
+    flex-direction: column; /* Кнопки в столбик */
+    width: 100%;
+  }
+
+  .btn-primary, .btn-ghost {
+    width: 100%; /* На всю ширину для удобства */
+    max-width: 320px;
+    text-align: center;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem; /* Чтобы огромный заголовок не ломал верстку */
+  }
+}
+
+/* 3. Исправление "косины" на мобильных (iPhone) */
+@media (max-width: 768px) {
+  .page {
+    gap: 2rem; /* Уменьшаем расстояние между секциями на телефоне */
+  }
+
+  .hero {
+    border-radius: 1.5rem; /* Более мягкие углы для маленьких экранов */
+    min-height: 50vh;
+  }
+
+  .hero-title {
+    /* Чтобы длинные слова не выталкивали экран вправо */
+    font-size: clamp(2rem, 10vw, 3rem); 
+    word-break: break-word;
+  }
 }

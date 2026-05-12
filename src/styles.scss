@@ -120,3 +120,15 @@ app-root {
 :host {
   display: block;
 }
+
+/* Добавь это в самое начало глобального файла */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Гарантируем, что body не дает скроллиться вбок */
+body {
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent; /* Убирает синий блик при клике на iPhone */
+}
