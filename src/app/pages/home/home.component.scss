@@ -10,6 +10,7 @@ html {
   flex-direction: column;
   align-items: center;
   gap: 3.5rem;
+  padding: 2rem 1rem;
   /* Используем адаптивный паддинг: на мобилках меньше, на ПК больше */
   padding: 2rem clamp(1rem, 5vw, 1.5rem); 
   box-sizing: border-box;
@@ -460,5 +461,10 @@ html {
     /* Чтобы длинные слова не выталкивали экран вправо */
     font-size: clamp(2rem, 10vw, 3rem); 
     word-break: break-word;
+  }
+}
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem; /* Уменьшаем заголовок для узких экранов */
   }
 }
