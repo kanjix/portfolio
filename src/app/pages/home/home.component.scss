@@ -4,8 +4,9 @@ html {
 .page {
   width: 100%;
   /* Ограничиваем максимальную ширину, чтобы на мониторах не растягивалось в бесконечность */
-  max-width: 1200px; 
-  margin: 0 auto;    /* Центрируем всю страницу по горизонтали */
+  max-width: 1100px; /* Твой установленный лимит */
+  margin-left: auto;  /* Математическое центрирование */
+  margin-right: auto;  /* Центрируем всю страницу по горизонтали */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +21,7 @@ html {
 .hero {
   position: relative;
   width: 100%;
+  margin: 0 auto;
   /* Устанавливаем высоту, чтобы картинка не схлопывалась */
   min-height: clamp(400px, 60vh, 600px); 
   border-radius: 2rem;
@@ -178,6 +180,7 @@ html {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  margin: 0 auto;
 }
 
 .section-header {
