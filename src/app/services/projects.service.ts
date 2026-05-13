@@ -8,7 +8,7 @@ import { Project } from '../models/project.model';
   providedIn: 'root'
 })
 export class ProjectsService {
-  private apiUrl = 'assets/db/projects.json';  // Путь к локальному JSON файлу
+  private apiUrl = '/assets/db/projects.json'; // Путь к локальному JSON файлу
 
   constructor(private http: HttpClient) {}
 

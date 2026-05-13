@@ -9,7 +9,7 @@ import { Project } from '../../models/project.model';
   templateUrl: './project-modal.component.html',
   styleUrls: ['./project-modal.component.scss']
 })
-export class ProjectModalComponent {
+export class ProjectModalComponent implements OnInit, OnDestroy {
   @Input() project?: Project;
   @Output() close = new EventEmitter<void>();
   visible = true;
