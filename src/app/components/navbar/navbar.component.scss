@@ -85,26 +85,25 @@
   color: #111827;
 }
 
-@media (max-width: 640px) {
+/* только для мобильных — всё центрировано, капсула чуть меньше */
+@media (max-width: 600px) {
   .navbar {
-    inset: 0 auto auto 50%;
+    inset: 0.8rem auto auto 50%;
     transform: translateX(-50%);
-    width: calc(100% - 1.5rem);
-    border-radius: 0 0 1.4rem 1.4rem;
+    width: calc(100% - 2rem);
   }
 
   .navbar-inner {
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.8rem 1.2rem;
-    border-radius: 0 0 1.4rem 1.4rem;
-    border-top: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 1.4rem;
   }
 
   .navbar-links {
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.8rem 1.2rem;
+    gap: 0.6rem 1rem;
   }
 }
