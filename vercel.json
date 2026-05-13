@@ -1,7 +1,7 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/portfolio-kisa",
+  "outputDirectory": "dist/portfolio",
   "devCommand": "ng serve",
   "env": {
     "SKIP_ENV_VALIDATION": "true"
