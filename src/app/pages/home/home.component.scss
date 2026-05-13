@@ -566,3 +566,8 @@ html {
     font-size: 2.2rem; /* Уменьшаем заголовок для узких экранов */
   }
 }
+@media (max-width: 600px) {
+  .page {
+    padding-top: 9rem;
+  }
+}
