@@ -11,9 +11,7 @@ html {
   flex-direction: column;
   align-items: center;
   gap: 3.5rem;
-  padding: 2rem 1rem;
-  /* Используем адаптивный паддинг: на мобилках меньше, на ПК больше */
-  padding: 2rem clamp(1rem, 5vw, 1.5rem); 
+  padding: calc(2rem + env(safe-area-inset-top, 0px)) clamp(1rem, 5vw, 1.5rem) calc(2rem + env(safe-area-inset-bottom, 0px));
   box-sizing: border-box;
 }
 
@@ -418,10 +416,7 @@ html {
   .hero {
     border-radius: 1.5rem;
   }
-
- 
-
-
+}
 
 /* ===== ПЕРЕКРАШИВАЕМ СТАРЫЙ ЗЕЛЁНЫЙ ТЕКСТ В ЧЁРНЫЙ ===== */
 
@@ -429,7 +424,6 @@ html {
 .hero-card,
 .hero-card * {
   color: #111827 !important;
-}
 }
 
 @media (max-width: 640px) {
@@ -446,6 +440,107 @@ html {
   
   .hero-title {
     font-size: 2.5rem; /* Чтобы огромный заголовок не ломал верстку */
+  }
+
+  .hero {
+    min-height: clamp(320px, 48vh, 520px);
+  }
+
+  .hero-content {
+    padding: clamp(1rem, 6vw, 2rem);
+  }
+
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .section-card {
+    padding: 1rem 1rem;
+  }
+
+  .section-card--row {
+    gap: 0.8rem;
+  }
+
+  .section-card--row h3 {
+    min-width: auto;
+  }
+
+  .title-with-icon {
+    gap: 0.6rem;
+  }
+
+  .title-with-icon h2 {
+    font-size: 1.4rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .section-header p,
+  .meta,
+  .chip-label {
+    font-size: 0.95rem;
+  }
+
+  .chip {
+    width: 42px;
+    height: 42px;
+  }
+
+  .chip-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .page {
+    gap: 3rem;
+    padding: calc(1.8rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 1.25rem) calc(1.8rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero {
+    min-height: clamp(360px, 55vh, 560px);
+  }
+
+  .hero-content {
+    padding: clamp(1.25rem, 6vw, 3rem);
+  }
+
+  .hero-buttons {
+    gap: 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 5vw, 4rem);
+  }
+
+  .hero-subtitle {
+    max-width: 100%;
+  }
+
+  .section-card {
+    padding: 1.2rem 1.4rem;
+  }
+
+  .section-card--row {
+    gap: 0.9rem;
+  }
+
+  .title-with-icon h2 {
+    font-size: 1.6rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.3rem;
   }
 }
 
