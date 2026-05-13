@@ -97,12 +97,14 @@ app-root {
   /* Исправление навигации (чтобы не косило вправо) */
   app-navbar nav {
     display: flex;
-    overflow-x: auto; /* Позволяем меню скроллиться внутри себя */
+    flex-wrap: wrap;
+    overflow-x: auto; /* Позволяем меню скроллиться внутри себя при необходимости */
     -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
+    white-space: normal;
     gap: 15px;
     padding: 10px 15px;
     width: 100%;
+    box-sizing: border-box;
   }
 
   /* Кнопки Hero-секции на мобильных (в столбик) */
