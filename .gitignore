@@ -2,9 +2,11 @@
 
 # Compiled output
 /dist
-/tmp
 /out-tsc
+/tmp
 /bazel-out
+/docs
+/browser
 
 # Node
 /node_modules
@@ -27,6 +29,21 @@ yarn-error.log
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Vercel
+.vercel
+
+# Build artifacts (legacy GitHub Pages)
+/*main-*.js
+/*styles-*.css
+3rdpartylicenses.txt
+prerendered-routes.json
+.nojekyll
 
 # Miscellaneous
 /.angular/cache

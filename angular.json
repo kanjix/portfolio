@@ -2,11 +2,12 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": false
   },
   "newProjectRoot": "projects",
   "projects": {
-    "my-app": {
+    "portfolio-kisa": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,46 +21,51 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-  "outputPath": "docs",
-  "baseHref": "/portfoliocivi/",
-  "browser": "src/main.ts",
-  "tsConfig": "tsconfig.app.json",
-  "inlineStyleLanguage": "scss",
-  "assets": [
-    {
-      "glob": "**/*",
-      "input": "public"
-    },
-    "src/favicon.png",
-    "src/assets"
-  ],
-  "styles": [
-    "src/styles.scss"
-  ],
-  "outputMode": "static",
-  "ssr": false
-}
-,
+            "outputPath": "dist/portfolio-kisa",
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              },
+              "src/favicon.png",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "outputMode": "static",
+            "ssr": false
+          },
           "configurations": {
             "production": {
               "budgets": [
-  {
-    "type": "initial",
-    "maximumWarning": "2mb",
-    "maximumError": "5mb"
-  },
-  {
-    "type": "anyComponentStyle",
-    "maximumWarning": "100kb",
-    "maximumError": "200kb"
-  }
-],
-              "outputHashing": "all"
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "100kb",
+                  "maximumError": "200kb"
+                }
+              ],
+              "outputHashing": "all",
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "namedChunks": true,
+              "vendorChunk": true
             }
           },
           "defaultConfiguration": "production"
@@ -68,16 +74,20 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "my-app:build:production"
+              "buildTarget": "portfolio-kisa:build:production"
             },
             "development": {
-              "buildTarget": "my-app:build:development"
+              "buildTarget": "portfolio-kisa:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss"
+          }
         }
       }
     }
