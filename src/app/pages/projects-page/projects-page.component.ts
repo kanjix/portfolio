@@ -1,37 +1,44 @@
-// src/components/projects-page/projects-page.component.ts
-import { Component, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';  // Импортируем CommonModule для работы с директивами
-import { ProjectsService } from '../../services/projects.service'; // Сервис для проектов
-import { ProjectCardComponent } from '../../components/project-card/project-card.component'; // Импортируем компонент карточки
+import { Component, OnInit, signal, computed } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ProjectsService } from '../../services/projects.service';
+import { ProjectCardComponent } from '../../components/project-card/project-card.component';
 import { ProjectModalComponent } from '../../components/project-modal/project-modal.component';
-import { Project } from '../../models/project.model';  // Модель проекта
+import { Project } from '../../models/project.model';
 
 @Component({
   selector: 'app-projects-page',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent, ProjectModalComponent],  // Импортируем необходимые компоненты
+  imports: [CommonModule, ProjectCardComponent, ProjectModalComponent],
   templateUrl: './projects-page.component.html',
   styleUrls: ['./projects-page.component.scss']
 })
 export class ProjectsPageComponent implements OnInit {
-  projects = signal<Project[]>([]);  // Массив для хранения проектов
-  isLoading = signal(true);  // Индикатор загрузки данных
+  projects = signal<Project[]>([]);
+  isLoading = signal(true);
   selectedProject = signal<Project | undefined>(undefined);
+
+  categories = computed(() => {
+    const all = this.projects();
+    const map = new Map<string, Project[]>();
+    for (const p of all) {
+      if (!map.has(p.category)) map.set(p.category, []);
+      map.get(p.category)!.push(p);
+    }
+    return Array.from(map.entries()).map(([name, items]) => ({ name, items }));
+  });
 
   constructor(private projectsService: ProjectsService) {}
 
   ngOnInit(): void {
-    // Загружаем данные при инициализации компонента
     this.projectsService.getProjects().subscribe({
       next: (data) => {
         this.projects.set(data);
-        this.isLoading.set(false);  // Данные загружены, скрываем индикатор загрузки
+        this.isLoading.set(false);
       },
       error: (err) => {
         console.error('Ошибка загрузки проектов:', err);
-        this.isLoading.set(false);  // В случае ошибки также скрываем индикатор
+        this.isLoading.set(false);
       }
     });
   }
 }
-  

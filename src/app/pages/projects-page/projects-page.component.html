@@ -1,16 +1,27 @@
-<!-- src/components/projects-page/projects-page.component.html -->
 <section class="section">
   <div class="section-header">
     <h2>Проектная деятельность</h2>
     <p>Визуализация идей и проектирование пространств: от разработки архитектурных объемов до создания качественной жилой и общественной среды.</p>
   </div>
 
-  <!-- Индикатор загрузки -->
   <div *ngIf="isLoading()" class="loading">Загрузка...</div>
 
-  <!-- Сетка с проектами, если данные загружены -->
-  <div class="projects-grid" *ngIf="!isLoading()">
-    <app-project-card *ngFor="let project of projects()" [project]="project" (open)="selectedProject.set($event)"></app-project-card>
-  </div>
-  <app-project-modal *ngIf="selectedProject()" [project]="selectedProject()" (close)="selectedProject.set(undefined)"></app-project-modal>
+  <ng-container *ngIf="!isLoading()">
+    <div *ngFor="let group of categories()" class="category-group">
+      <h3 class="category-title">{{ group.name }}</h3>
+      <div class="projects-grid">
+        <app-project-card
+          *ngFor="let project of group.items"
+          [project]="project"
+          (open)="selectedProject.set($event)"
+        ></app-project-card>
+      </div>
+    </div>
+  </ng-container>
+
+  <app-project-modal
+    *ngIf="selectedProject()"
+    [project]="selectedProject()"
+    (close)="selectedProject.set(undefined)"
+  ></app-project-modal>
 </section>
